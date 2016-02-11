@@ -1,0 +1,40 @@
+repo "http://maven.central.com"//test
+repo 'https://registry.npmjs.com' // end of line
+
+// comment
+//
+// a // b // c
+add node0, node1, node2 : JavascriptNode
+add	node0.ticker  , node1.ticker: org.kevoree.library.Ticker
+add	 	sync  : WSGroup/5.3.2-SNAPSHOT // end of line comment
+add chan: RemoteWSChan
+
+attach  node0 sync
+attach  node0, node1 , node2	*
+attach  node0,node1,node2 sync
+attach  * sync 	//yolo
+attach node1 sync2// yolo
+
+detach node0 foo
+
+set sync.master = 'node0'
+set sync.master/node0 = '9000' // doing some test
+set sync.onConnect = 'add {nodeName}.foo: Ticker // end of line comment
+set {nodeName}.foo.bar = "dredre"'
+
+set sync.onDisconnect = "// don't know
+remove {nodeName}
+"
+set node0.ticker.delay = '5000'
+set node0.logLevel = "DEBUG"
+
+bind node0.ticker.tick chan // end of line comment
+unbind node0.printer.input *
+remove node0 // yolo
+remove a,*,c // test
+
+network node0.ip.lo 127.0.0.1
+network node0.ip.lo localhost // end of line comment
+
+start node0
+stop node1.ticker//yolo

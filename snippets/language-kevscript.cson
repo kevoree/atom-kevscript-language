@@ -1,0 +1,19 @@
+'.source.kevs':
+  'add':
+    'prefix': 'ad'
+    'body': 'add $1: $2'
+  'add with version':
+    'prefix': 'adv'
+    'body': 'add $1: $2/$3'
+  'set':
+    'prefix': 'se'
+    'body': 'set $1.$2 = "$3"'
+  'set with fragment':
+    'prefix': 'sef'
+    'body': 'set $1.$2/$3 = "$4"'
+  'net local':
+    'prefix': 'nl'
+    'body': 'network $1.ip.lo 127.0.0.1'
+  'net':
+    'prefix': 'n'
+    'body': 'network $1.ip.$2 $3'
