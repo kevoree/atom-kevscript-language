@@ -62,6 +62,14 @@
       { 'include': '#comment-line' }
     ]
   }
+  'include': {
+    'comment': 'DEPRECATED'
+    'match': '\\b(include)[ \\t]+([^\\/\\/]+)(\\/\\/.+)?'
+    'captures':
+      '1': { 'name': 'keyword.statement.kevscript' }
+      '2': { 'name': 'include.kevscript' }
+      '3': { 'patterns': [ { 'include': '#comment-line' } ] }
+  }
   'remove': {
     'match': '\\b(remove)[ \\t]+([^\\/\\/]+)(\\/\\/.+)?'
     'captures':
@@ -178,14 +186,6 @@
         ]
       }
     }
-    # 'match': '(\\*|[a-zA-Z0-9_-]+)((\\.)(\\*|[a-zA-Z0-9_-]+)){1,2}((\\/)(\\*|[a-zA-Z0-9_-]+))?'
-    # 'captures': {
-    #   '1': { 'name': 'entity.other.attribute-name.instance-name.kevscript' }
-    #   '4': { 'name': 'variable.interpolation.param.kevscript' }
-    #   '6': { 'name': 'keyword.operator.fragmented-param.separator.kevscript' }
-    #   '7': { 'name': 'entity.other.attribute-name.node-fragment.kevscript' }
-    # }
-    # 'name': 'entity.other.attribute-name.instance-path.kevscript'
   }
   'instance-name': {
     'match': '[\\w-]+'
@@ -200,7 +200,7 @@
     'end': '\''
     'patterns': [
       { 'include': '#escape' }
-      # { 'include': '$self' }
+      { 'include': '$self' }
     ]
     'name': 'string.quoted.single.kevscript'
   }
@@ -209,7 +209,7 @@
     'end': '"'
     'patterns': [
       { 'include': '#escape' }
-      # { 'include': '$self' }
+      { 'include': '$self' }
     ]
     'name': 'string.quoted.double.kevscript'
   }

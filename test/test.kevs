@@ -1,6 +1,9 @@
 repo "http://maven.central.com"//test
 repo 'https://registry.npmjs.com' // end of line
 
+include npm:kevoree-comp-ticker // include statement is deprecated
+
+
 // comment
 //
 // a // b // c
@@ -20,7 +23,8 @@ detach node0 foo
 set sync.master = 'node0'
 set sync.master/node0 = '9000' // doing some test
 set sync.onConnect = 'add {nodeName}.foo: Ticker // end of line comment
-set {nodeName}.foo.bar = "dredre"'
+set {nodeName}.foo.bar = "dredre"
+'
 
 set sync.onDisconnect = "// don't know
 remove {nodeName}

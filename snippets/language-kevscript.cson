@@ -17,3 +17,6 @@
   'net':
     'prefix': 'n'
     'body': 'network $1.ip.$2 $3'
+  'inc':
+    'prefix': 'inc'
+    'body': 'include $1:$2 // include statement is deprecated'
