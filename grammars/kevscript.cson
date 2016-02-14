@@ -121,6 +121,7 @@
       { 'include': '#instance-path' }
       { 'include': '#single_string' }
       { 'include': '#double_string' }
+      { 'include': '#comment-line' }
     ]
   }
   'bind': {

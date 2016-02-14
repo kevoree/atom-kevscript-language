@@ -3,7 +3,6 @@ repo 'https://registry.npmjs.com' // end of line
 
 include npm:kevoree-comp-ticker // include statement is deprecated
 
-
 // comment
 //
 // a // b // c

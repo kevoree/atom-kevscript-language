@@ -1,7 +1,8 @@
 {
   "name": "language-kevscript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "KevScript language support in Atom",
+  "main": "lib/kevscript",
   "keywords": [
     "kevoree",
     "grammar",
@@ -17,5 +18,12 @@
   "license": "LGPL-3.0",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
+  },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "provide"
+      }
+    }
   }
 }
