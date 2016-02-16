@@ -20,7 +20,7 @@ module.exports =
     completions
 
   buildStatementCompletion: (statement) ->
-    type: 'statement'
+    type: 'keyword'
     displayText: statement.name
     description: statement.description
     snippet: statement.snippet
@@ -29,7 +29,7 @@ module.exports =
   dispose: -> @statements = null
 
   loadProperties: ->
-    fs.readFile path.resolve(__dirname, '..', 'completions.json'), (error, content) =>
+    fs.readFile path.resolve(__dirname, '..', '..', 'completions.json'), (error, content) =>
       {@statements} = JSON.parse(content) unless error?
       return
 

@@ -201,7 +201,7 @@
     'end': '\''
     'patterns': [
       { 'include': '#escape' }
-      { 'include': '$self' }
+      # { 'include': '$self' }
     ]
     'name': 'string.quoted.single.kevscript'
   }
@@ -210,7 +210,7 @@
     'end': '"'
     'patterns': [
       { 'include': '#escape' }
-      { 'include': '$self' }
+      # { 'include': '$self' }
     ]
     'name': 'string.quoted.double.kevscript'
   }
