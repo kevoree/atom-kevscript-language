@@ -2,8 +2,12 @@
 'scopeName': 'source.kevs'
 'fileTypes': [ 'kevs' ]
 'foldingStartMarker': '\''
-'foldingStopMarker': '\'$'
+'foldingStopMarker': '\''
 'patterns': [
+  {
+    'match': 'LATEST|RELEASE'
+    'name': 'variable.constant.kevscript'
+  }
   { 'include': '#add' }
   { 'include': '#repo' }
   { 'include': '#include' }
@@ -149,7 +153,7 @@
       '7': { 'patterns': [ { 'include': '#comment-line' } ] }
   }
   'name-list_instance-path': {
-    'match': '(.+)(?<=[ \\t])([\\w_*-]+)'
+    'match': '(.+)[ \\t]([\\w_-]+|\\*)'
     'captures': {
       '1': { 'patterns': [ { 'include': '#name-list' } ] }
       '2': { 'name': 'entity.name.tag.target.kevscript' }
@@ -165,11 +169,38 @@
     ]
   }
   'type-def': {
-    'match': '([\\w\\.]+)((\\/)([a-zA-Z0-9._-]+))?'
-    'captures':
-      '1': { 'name': 'entity.other.inherited-class.type-def.kevscript' }
-      '3': { 'name': 'type-def.version.separator.kevscript' }
-      '4': { 'name': 'string.regexp.type-def.version.kevscript' }
+    'patterns': [
+      {
+        'match': '/'
+        'name': 'type-def.version.separator.kevscript'
+      }
+      {
+        'match': 'LATEST|RELEASE'
+        'name': 'keyword.control.statement.type-def.version.constant.kevscript'
+      }
+      {
+        'match': '[A-Z][\\w]*'
+        'name': 'constant.language.type-def.name.kevscript'
+      }
+      {
+        'match': '[a-z0-9.]*'
+        'name': 'entity.other.inherited-class.namespace.kevscript'
+      }
+      {
+        'match': '[0-9]+'
+        'name': 'string.regexp.type-def.version.kevscript'
+      }
+      # {
+      #   'match': '(([\\w]+\\.)*)?([A-Z][\\w]*)(\\/([0-9]+|LATEST)(\\/(LATEST|RELEASE))?)?'
+      #   'captures':
+      #     '1': { 'name': 'entity.other.inherited-class.type-def.kevscript' }
+      #     '3': { 'name': 'variable.language.type-def.name.kevscript' }
+      #     '5': { 'name': 'type-def.version.separator.kevscript' }
+      #     '6': { 'name': 'string.regexp.type-def.version.kevscript' }
+      #     '8': { 'name': 'type-def.version.separator.kevscript' }
+      #     '9': { 'name': 'string.regexp.type-def.du.version.kevscript' }
+      # }
+    ]
   }
   'instance-path': {
     'match': '([\\w*\\.-]+)(\\.([\\w*\\.-]+)){0,2}'
@@ -201,7 +232,6 @@
     'end': '\''
     'patterns': [
       { 'include': '#escape' }
-      # { 'include': '$self' }
     ]
     'name': 'string.quoted.single.kevscript'
   }
@@ -210,7 +240,6 @@
     'end': '"'
     'patterns': [
       { 'include': '#escape' }
-      # { 'include': '$self' }
     ]
     'name': 'string.quoted.double.kevscript'
   }

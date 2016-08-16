@@ -6,18 +6,34 @@ include npm:kevoree-comp-ticker // include statement is deprecated
 // comment
 //
 // a // b // c
-add node0, node1, node2 : JavascriptNode
-add	node0.ticker  , node1.ticker: org.kevoree.library.Ticker
-add	 	sync  : WSGroup/5.3.2-SNAPSHOT // end of line comment
+add node0,node1, node2 : JavascriptNode // doing some test
+add node0.printer, node0.printer1, node0.printer2: ConsolePrinter
+add node0.ticker, node1.ticker: org.kevoree.library.Ticker
+add sync  : WSGroup/LATEST/LATEST // end of line comment
 add chan: RemoteWSChan
 
-attach  node0 sync
-attach  node0, node1, node2 *
-attach  node0,node1,node2 sync
-attach  * sync 	//yolo
+add a: Ticker
+add a: Ticker/1
+add a: Ticker/LATEST
+add a: Ticker/LATEST/LATEST
+add a: org.kevoree.library.Ticker
+add a: org.kevoree.library.Ticker/1
+add a: org.kevoree.library.Ticker/LATEST
+add a: org.kevoree.library.Ticker/LATEST/LATEST
+add a: org.kevoree.library.Ticker/LATEST/RELEASE
+add a: org.kevoree.library.Ticker/42/LATEST
+add a: org.kevoree.library.Ticker/100/RELEASE
+
+attach node0 sync
+attach node0, node1, node2 *
+attach node0,node1,node2 sync
+attach * sync 	//yolo
 attach node1 sync2// yolo
 
 detach node0 foo
+detach node0, node1, node2 *
+
+move node0.comp node1
 
 set sync.master = 'node0'
 set sync.master/node0 = '9000' // doing some test
@@ -39,5 +55,5 @@ remove a,*,c // test
 network node0.ip.lo 127.0.0.1
 network node0.ip.lo localhost // end of line comment
 
-start node0
+start node0, node2.ticker
 stop node1.ticker//yolo
