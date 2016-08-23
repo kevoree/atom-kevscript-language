@@ -11,6 +11,8 @@ add node0.printer, node0.printer1, node0.printer2: ConsolePrinter
 add node0.ticker, node1.ticker: org.kevoree.library.Ticker
 add sync  : WSGroup/LATEST/LATEST // end of line comment
 add chan: RemoteWSChan
+add %ctxVar%: Foo
+add %%genVar%%: Yolo
 
 add a: Ticker
 add a: Ticker/1
@@ -40,6 +42,8 @@ set sync.master/node0 = '9000' // doing some test
 set sync.onConnect = 'add {nodeName}.foo: Ticker // end of line comment
 set {nodeName}.foo.bar = "dredre"
 '
+set %%genVar%%.attr = 'val'
+set %ctxVar%.attr = 'val'
 
 set sync.onDisconnect = "// don't know
 remove {nodeName}
