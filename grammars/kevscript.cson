@@ -10,8 +10,18 @@
     'name': 'delimiter.kevscript'
   }
   {
-    'match': '%'
-    'name': 'variable.language.context.kevscript'
+    'match': '(%)([\\w]+)(%)'
+    'captures':
+      '1': { 'name': 'variable.language.ctxvarbracket.kevscript' }
+      '2': { 'name': 'support.class.builtin.ctxvar.kevscript' }
+      '3': { 'name': 'variable.language.ctxvarbracket.kevscript' }
+  }
+  {
+    'match': '(%%)([\\w]+)(%%)'
+    'captures':
+      '1': { 'name': 'variable.language.ctxvarbracket.kevscript' }
+      '2': { 'name': 'support.class.builtin.ctxvar.kevscript' }
+      '3': { 'name': 'variable.language.ctxvarbracket.kevscript' }
   }
   {
     'match': '(?<=/)\\b(LATEST|RELEASE)\\b'
