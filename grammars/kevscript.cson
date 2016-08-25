@@ -4,24 +4,45 @@
 'foldingStartMarker': '\''
 'foldingStopMarker': '\''
 'patterns': [
-  {
-    'match': 'LATEST|RELEASE'
-    'name': 'variable.constant.kevscript'
-  }
-  { 'include': '#add' }
-  { 'include': '#repo' }
-  { 'include': '#include' }
-  { 'include': '#remove' }
-  { 'include': '#move' }
-  { 'include': '#set' }
-  { 'include': '#attach' }
-  { 'include': '#detach' }
-  { 'include': '#network' }
-  { 'include': '#bind' }
-  { 'include': '#unbind' }
-  { 'include': '#start' }
-  { 'include': '#stop' }
   { 'include': '#comment-line' }
+  {
+    'match': ',|/|:'
+    'name': 'delimiter.kevscript'
+  }
+  {
+    'match': '%'
+    'name': 'variable.language.context.kevscript'
+  }
+  {
+    'match': '(?<=/)\\b(LATEST|RELEASE)\\b'
+    'captures': {
+      '1': {
+        'name': 'keyword.control.type-def.version.constant.kevscript'
+      }
+    }
+  }
+  {
+    'match': '\\b^(add|repo|include|remove|move|set|attach|detach|network|bind|unbind|start|stop)\\b'
+    'name': 'keyword.statement.kevscript'
+  }
+  {
+    'match': '[A-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9_])?'
+    'name': 'constant.character.escape.typedef.name.kevscript'
+  }
+  {
+    'match': '[a-z][\\w]*(\\.[a-z][\\w]*)*\\.(?=[A-Z])'
+    'name': 'entity.other.inherited-class.namespace.kevscript'
+  }
+  { 'include': '#strings' }
+  { 'include': '#instance-path' }
+  {
+    'match': '(?<=/)([0-9]+)'
+    'captures': {
+      '1': {
+        'name': 'variable.language.typedef.version.kevscript'
+      }
+    }
+  }
 ]
 'repository': {
   'comment-line': {
@@ -45,15 +66,43 @@
       }
     ]
   }
-  'add': {
-    'match': '\\b(add)([^:\\n\\r]+)(:)[ \\t]*(\\S+)(.+)?'
-    'captures': {
-      '1': { 'name': 'keyword.statement.kevscript' }
-      '2': { 'patterns': [ { 'include': '#name-list' } ] }
-      '3': { 'name': 'type-def.separator.kevscript' }
-      '4': { 'patterns': [ { 'include': '#type-def' } ] }
-      '5': { 'patterns': [ { 'include': '#comment-line' } ] }
-    }
+  'strings': {
+    'patterns': [
+      {
+        'begin': '\''
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.kevscript'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.kevscript'
+        'name': 'string.quoted.single.kevscript'
+        'patterns': [
+          {
+            'match': '\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)'
+            'name': 'constant.character.escape.kevscript'
+          }
+        ]
+      }
+      {
+        'begin': '"'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.kevscript'
+        'end': '"'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.kevscript'
+        'name': 'string.quoted.double.kevscript'
+        'patterns': [
+          {
+            'match': '\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)'
+            'name': 'constant.character.escape.kevscript'
+          }
+        ]
+      }
+    ]
   }
   'repo': {
     'begin': '\\b(repo)'

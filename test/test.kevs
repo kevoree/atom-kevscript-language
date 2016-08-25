@@ -40,13 +40,12 @@ move node0.comp node1
 set sync.master = 'node0'
 set sync.master/node0 = '9000' // doing some test
 set sync.onConnect = 'add {nodeName}.foo: Ticker // end of line comment
-set {nodeName}.foo.bar = "dredre"
-'
+set {nodeName}.foo.bar = "dredre"'
 set %%genVar%%.attr = 'val'
 set %ctxVar%.attr = 'val'
 
 set sync.onDisconnect = "// don't know
-remove {nodeName}
+remove {nodeName}\"
 "
 set node0.ticker.delay = '5000'
 set node0.logLevel = "DEBUG"
