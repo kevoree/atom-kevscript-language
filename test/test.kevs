@@ -1,62 +1,47 @@
-repo "http://maven.central.com"//test
-repo 'https://registry.npmjs.com' // end of line
-
-include npm:kevoree-comp-ticker // include statement is deprecated
 
 // comment
 //
 // a // b // c
-add node0,node1, node2 : JavascriptNode // doing some test
-add node0.printer, node0.printer1, node0.printer2: ConsolePrinter
-add node0.ticker, node1.ticker: org.kevoree.library.Ticker
+add node0,node1, %%genVar%% : JavascriptNode/LATEST/LATEST // doing some test
+add node0.printer, node0.printer1, node0.printer2: ConsolePrinter/LATEST/LATEST
+add node0.ticker, node1.ticker: kevoree.Ticker/LATEST/LATEST
 add sync  : WSGroup/LATEST/LATEST // end of line comment
-add chan: RemoteWSChan
-add %ctxVar%: Foo
-add %%genVar%%: Yolo
+add chan: RemoteWSChan/LATEST/LATEST
+add node0.%ctxVar%: Ticker/LATEST/LATEST
 
-add a: Ticker
-add a: Ticker/1
-add a: Ticker/LATEST
-add a: Ticker/LATEST/LATEST
-add a: org.kevoree.library.Ticker
-add a: org.kevoree.library.Ticker/1
-add a: org.kevoree.library.Ticker/LATEST
-add a: org.kevoree.library.Ticker/LATEST/LATEST
-add a: org.kevoree.library.Ticker/LATEST/RELEASE
-add a: org.kevoree.library.Ticker/42/LATEST
-add a: org.kevoree.library.Ticker/100/RELEASE
+add node0.a: Ticker/LATEST/LATEST
 
-attach node0 sync
-attach node0, node1, node2 *
-attach node0,node1,node2 sync
 attach * sync 	//yolo
-attach node1 sync2// yolo
 
-detach node0 foo
-detach node0, node1, node2 *
+// detach node0, node1, %%genVar%% *
 
 move node0.comp node1
 
 set sync.master = 'node0'
-set sync.master/node0 = '9000' // doing some test
+set sync.port/node0 = '9000' // doing some test
 set sync.onConnect = 'add {nodeName}.foo: Ticker // end of line comment
 set {nodeName}.foo.bar = "dredre"'
-set %%genVar%%.attr = 'val'
-set %ctxVar%.attr = 'val'
+set %%genVar%%.logLevel = 'val'
+set node0.%ctxVar%.period = '1234'
 
 set sync.onDisconnect = "// don't know
 remove {nodeName}\"
 "
-set node0.ticker.delay = '5000'
+set node0.ticker.period = '5000'
 set node0.logLevel = "DEBUG"
 
 bind node0.ticker.tick chan // end of line comment
 unbind node0.printer.input *
 remove node0 // yolo
-remove a,*,c // test
+// remove a,*,c // test
 
-network node0.ip.lo 127.0.0.1
-network node0.ip.lo localhost // end of line comment
+// network node0.ip.lo 127.0.0.1
+network node1.ip.lo localhost // end of line comment
 
-start node0, node2.ticker
+start node1
 stop node1.ticker//yolo
+
+network node1.ip.lo %someIP%
+
+set chan.host = 'ws.kevoree.org'
+set chan.uuid = '8545745'
