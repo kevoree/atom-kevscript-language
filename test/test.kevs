@@ -2,20 +2,20 @@
 // comment
 //
 // a // b // c
-add node0,node1, %%genVar%% : JavascriptNode/LATEST/LATEST // doing some test
+add node0, node1, %%genVar%% : JavascriptNode/LATEST/LATEST // doing some test
 add node0.printer, node0.printer1, node0.printer2: ConsolePrinter/LATEST/LATEST
 add node0.ticker, node1.ticker: kevoree.Ticker/LATEST/LATEST
 add sync  : WSGroup/LATEST/LATEST // end of line comment
 add chan: RemoteWSChan/LATEST/LATEST
 add node0.%ctxVar%: Ticker/LATEST/LATEST
 
-add node0.a: Ticker/LATEST/LATEST
+add node0.a: Ticker/LATEST/{ js: '5.3.8' }
 
 attach * sync 	//yolo
 
 // detach node0, node1, %%genVar%% *
 
-move node0.comp node1
+move node0.a node1
 
 set sync.master = 'node0'
 set sync.port/node0 = '9000' // doing some test
