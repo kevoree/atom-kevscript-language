@@ -1,0 +1,4 @@
+add node: JavascriptNode
+add node.ticker: Ticker
+//add node.printer: ConsolePrinter
+add node.printer: ConsolePrinter
